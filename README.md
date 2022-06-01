@@ -1,2 +1,2 @@
 # Data-Structure-Implementation
- Implementation of various datastructure from scratch
+ Implementation of various data structures from scratch
