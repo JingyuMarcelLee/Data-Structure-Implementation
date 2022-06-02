@@ -19,3 +19,33 @@ class Vector:
         
     def __add__(self, other):
         """Return sum of two Vectors(since this is not radd, onle works when the vector object is on the left side of the + sign)"""
+        if len(self) != len(other):                         # relies on __len__()
+            raise ValueError('dimensions do not agree')
+        result = Vector(len(self))
+        for j in range(len(self)):
+            result[j] = self[j] + other[j]
+        return result
+    
+    def __eq__(self, other) -> bool:
+        """Return True if the vector has same coordinates and dimension as other."""
+        return self._coords == other._coords
+    
+    def __ne__(self, other) -> bool:
+        """Return true if the vector differs from other"""
+        return not self == other                            # relies on __eq__()
+    
+    def __str__(self) -> str:
+        """Produce string representation of a vector."""
+        return '<' + str(self._coords)[1:-1]+'>'            # using list representation
+    
+if __name__ == '__main__':
+    V1 = Vector(5)
+    V2 = Vector(5)
+    print(V1==V2)
+    for i in range(len(V1)):
+        V1.__setitem__(i,1)
+    
+    for i in range(len(V2)):
+        V1.__setitem__(i,2)
+    
+    print(V1+V2)
