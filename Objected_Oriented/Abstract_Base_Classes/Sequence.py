@@ -16,7 +16,7 @@ class Sequence(metaclass = ABCMeta):
         
     def __contains__(self, val):
         """Return True if val foundi n the sequence, False otherwise."""
-        for j in range(len(self)):
+        for j in range(len(self)):                  # assuming __len__ exist in a concrete subclass
             if self[j] == val:
                 return True
         return False

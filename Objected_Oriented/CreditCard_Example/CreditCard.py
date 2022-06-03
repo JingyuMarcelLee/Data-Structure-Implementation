@@ -1,7 +1,7 @@
 class CreditCard:
     """A representation of a credit card to practice OOP design patterns."""
     # __slots__ = '_customer', '_bank, '_account', '_balance', '_limit'
-    # above will save the namespace as a tuple instead of dict, saving memory
+    # above will streamline the namespace as a tuple instead of dict, saving memory
     
     def __init__(self, customer: str, bank: str, account: str, limit: int) -> None:
         """Intializing a new instance of the credit card.

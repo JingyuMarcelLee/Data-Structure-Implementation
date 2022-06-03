@@ -2,7 +2,8 @@ from CreditCard import CreditCard
 
 class PredatoryCreditCard(CreditCard):
     """An extension to the CreditCard that compounds interest and fees."""
-    
+    OVERLIMIT_FEE = 5                                               # class-level member (constant, static final var)
+  
     def __init__(self, customer, bank, account, limit, apr) -> None:
         """Initilize a new predatory credit card instance.
         
@@ -25,10 +26,10 @@ class PredatoryCreditCard(CreditCard):
         Return False and take $5 transaction fee if the charge is denied.
         """
         
-        success = super().charge(price)             # call method from parent
+        success = super().charge(price)                             # call method from parent
         if not success:
-            self._balance += 5                      # assess penalty
-        return success                              # caller expects return value
+            self._balance += PredatoryCreditCard.OVERLIMIT_FEE      # assess penalty
+        return success                                              # caller expects return value
     
     def process_month(self) -> None:
         """Assess monthly interest on outstanding balance."""
