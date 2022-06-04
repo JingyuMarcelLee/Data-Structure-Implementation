@@ -50,6 +50,7 @@ class DinamicArray:
         if self._n == self._capacity // 4:
             self._resize(self._capacity // 2)                       # halven the capacity if the num of actual elements are a quarter of the capacity
         self._A = B
+        
     def _index(self, e: object) -> int:
         """Find the index of a given element using sequential search."""
         i = 0
