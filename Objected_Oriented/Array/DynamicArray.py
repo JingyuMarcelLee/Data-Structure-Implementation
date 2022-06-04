@@ -1,10 +1,10 @@
-import ctypes
-from lib2to3.pgen2.token import VBAR                                                       # to provide low-level arrays that are not dynamic
+import ctypes                                                       # to provide low-level arrays that are not dynamic
 
 class DinamicArray:
     """Implementation of a dinamic array as an ADT in python."""
     
     def __init__(self) -> None:
+        """Initialize an empty array."""
         self._n = 0                                                 # count the number of elements stored
         self._capacity = 1                                          # default array max capacity
         self._A = self._make_array(self._capacity)                  # low-level array
@@ -36,4 +36,44 @@ class DinamicArray:
         
     def _make_array(self, c: int) -> None:
         """Return new low level array with capacity c."""
-        return (c * ctypes.py_object)()
+        return (c * ctypes.py_object)()                             # ctypes.py_object is a type, ctypes.py_object() is an instance
+    
+    def remove(self, e: object) -> None:
+        """Remove element."""
+        i = self._index(e)
+        B = self._make_array(self._capacity)                        # make new array
+        self._n -= 1
+        for k in range(0, i):
+            B[k] = self._A[k] 
+        for k in range(i, self._n):
+            B[k] = self._A[k+1]  
+        if self._n == self._capacity // 4:
+            self._resize(self._capacity // 2)                       # halven the capacity if the num of actual elements are a quarter of the capacity
+        self._A = B
+    def _index(self, e: object) -> int:
+        """Find the index of a given element using sequential search."""
+        i = 0
+        while i < self._n:
+            if self._A[i] == e:
+                return i
+            else:
+                i += 1 
+        raise ValueError("This element does not exist in this array.")
+    
+def main():
+    print(list(range(1,1)))
+    test = DinamicArray()
+    test.append(1)
+    test.append(3)
+    test.append(2)
+    print(len(test))
+    test.remove(3)
+    print(len(test))
+    try:
+        test.remove(3)
+        print("ValueError Uncaught; test fail.")
+    except ValueError:
+        print("ValueError Caught")
+    
+if __name__ == "__main__":
+    main()
