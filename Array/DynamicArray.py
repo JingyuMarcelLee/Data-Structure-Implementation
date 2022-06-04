@@ -61,6 +61,16 @@ class DinamicArray:
                 i += 1 
         raise ValueError("This element does not exist in this array.")
     
+    def insert(self, k: int ,value) -> None:
+        """Insert value at index k and shift the subsequent values rightward."""
+        # we assume 0 <= k <= n in this version
+        if self._n == self._capacity:
+            self._resize(2 * self._capacity)                         # dynamic incrase of space if not enough room
+        for j in range(self._n, k, -1):
+            self._A[j] = self._A[j-1]
+            self._A[k] = value
+            self._n += 1 
+    
 def main():
     print(list(range(1,1)))
     test = DinamicArray()
