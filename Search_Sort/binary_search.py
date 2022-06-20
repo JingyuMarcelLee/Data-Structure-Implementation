@@ -1,7 +1,4 @@
 import pprint
-
-from pygments import highlight
-
 def binary_search(data, target, low, high) -> bool:
     """Return True if the target is found in the list"""
     
