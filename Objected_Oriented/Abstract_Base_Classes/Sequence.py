@@ -1,7 +1,4 @@
 from abc import ABCMeta, abstractmethod
-
-from sklearn.cluster import k_means
-
 class Sequence(metaclass = ABCMeta):
     """Version of collections.Sequence abstract base case (Template method pattern)"""
     
