@@ -66,25 +66,3 @@ class FavoritesList:
             item = walk.element()                        # element of list is _Item
             yield item._value                            # report user's element
             walk = self._data.after(walk)
-
-def main():
-    A = FavoritesList()._Item("A")
-    B = FavoritesList()._Item("B")
-    C = FavoritesList()._Item("C")
-    D = FavoritesList()._Item("D")
-    myList = FavoritesList()
-    myList._Data.add_first("A")
-    myList._Data.add_last("D")
-    myList._Data._insert_between("A", "D", "C")
-    myList._Data._insert_between("A", "C", "B")
-    myList.access("A")
-    myList.access("A")
-    myList.access("A")
-    myList.access("A")
-    myList.access("C")
-    myList.access("C")
-    myList.top(2)
-    print(myList._Data.last())
-
-if __name__ == '__main__':
-    main()                
