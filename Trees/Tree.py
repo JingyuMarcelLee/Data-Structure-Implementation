@@ -41,7 +41,7 @@ class Tree:
         """Return the total number of elements in the tree."""
         raise NotImplementedError('must be implemented by subclass')
     
-    #---------- concrete methods implemneted in this class ----------------
+    #---------- concrete methods implemented in this class ----------------
     def is_root(self, p):
         """Return True if Position p represents the root of the tree."""
         return self.root() == p
