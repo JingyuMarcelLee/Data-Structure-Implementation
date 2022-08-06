@@ -1,4 +1,4 @@
-import BinaryTree
+from BinaryTree import BinaryTree
 class LinkedBinaryTree(BinaryTree):
     """Linked representation of a binary tree structure."""
     
@@ -165,3 +165,12 @@ class LinkedBinaryTree(BinaryTree):
             node._right = t2._root
             t2._root = None                                 # set t2 instance to empty
             t2._size = 0
+
+def main():
+    theTree = LinkedBinaryTree() # initial
+    theTree.add_root(1)
+    print(theTree.root().element())
+    theTree._add_left(theTree.root(), 2)
+    print(theTree.left(theTree.root()).element())
+if __name__ == '__main__':
+    main()
