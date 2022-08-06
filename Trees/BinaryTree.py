@@ -35,3 +35,9 @@ class BinaryTree(Tree):
             yield self.left(p)
         if self.right(p) is not None:
             yield self.right(p)
+
+    # ------------------------- traversal method (inorder by default) -------------------
+    def positions(self):
+        """ method overriden from the parent to make inorder traversal as default traversal method."""
+        return self.inorder()                              # make inorder default
+    

@@ -1,6 +1,4 @@
-from sympy import Not
-
-
+from LinkedQueue import LinkedQueue
 class Tree:
     """Abstract base class for representing a tree structure."""
     
@@ -99,3 +97,43 @@ class Tree:
         for c in self.children(p):   # for each child c
             for other in self._subtree_preorder(c): # do preorder of c's subtree
                 yield other          # yielding each to our caller    
+    
+    def postorder(self):
+        """Generate a posrorder iteration of positions in the tree."""
+        if not self.is_empty():
+            for p in self._subtree_postorder(self.root()):    # start recursion
+                yield p
+
+    def _subtree_postorder(self, p):
+        """Generate a postorder iteration of positions in subtree rooted at p."""
+        for c in self.children(p):   # for each child c
+            for other in self._subtree_postorder(c): # do postorder of c's subtree
+                yield other          # yielding each to our caller       
+        yield p                      # visit p after its subtrees (postorder)
+        
+    def breadthfirst(self, p):
+        """Generate a breadth-first iteration of the positions of hte tree."""
+        if not self.is_empty():
+            fringe = LinkedQueue()   # using FIFO queue to save the tree, known positions are not yet yielded
+            fringe.enqueue(self.root)   # start with the root node
+            while not fringe._is_empty():
+                p = fringe.dequeue()    # remove from the queue
+                yield p                 # report from the position
+                for c in self.children(p):
+                    fringe.enqueue(c)   # add children to the back of the queue
+    
+    def inorder(self):
+        """Geenrate an inorder iteration of positions in the tree."""
+        if not self.is_empty():
+            for p in self._subtree_inorder(self.root()):
+                yield p
+
+    def _subtree_inorder(self, p):
+        """Geenrate an inorder iteration of positions in the subtree rooted at p."""
+        if self.left(p) is not None:    # if left child exists, traverse its subtree
+            for other in self._subtree_inorder(self.left(p)):
+                yield other
+        yield p                         # visit p between its subtrees (so it is left to right)
+        if self.right(p) is not None:
+            for other in self._subtree_inorder(self.right(p)):
+                yield other
