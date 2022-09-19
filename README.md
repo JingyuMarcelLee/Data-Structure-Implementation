@@ -3,4 +3,4 @@
  
  This week: 
  - [ ] Move on to priority Q
- - [ ] Complete Tree
+
